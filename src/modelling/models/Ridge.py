@@ -1,11 +1,11 @@
+from sklearn.linear_model import Ridge
 from modelling.models import Model, register
-from sklearn.neighbors import KNeighborsRegressor
 
 @register
-class KNN(Model):
+class Ridge(Model):
     def __init__(self) -> None:
-        self.__name = 'default_KNN'
-        self.__model = KNeighborsRegressor()
+        self.__name = 'default_Ridge'
+        self.__model = Ridge()
 
     def fit(self, X ,y):
         return self.__model.fit(X, y)
