@@ -1,3 +1,5 @@
+from modelling.models import model_register
+
 def create_model(model_name:str, model_type:str):
     '''
     Creates a model and saves it as a .pkl file to the 'model_store' folder.
@@ -9,4 +11,6 @@ def create_model(model_name:str, model_type:str):
     
     :returns:               Path to the created model
     '''
-    raise Exception('Not implemented...')
+    model = model_register[model_type.lower().strip()]()
+    model.set_name(model_name.strip())
+    model.save()
