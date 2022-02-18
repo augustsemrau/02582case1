@@ -2,7 +2,7 @@ from modelling.models import Model, register
 from sklearn.neighbors import KNeighborsRegressor
 
 @register
-class KNN(Model):
+class KNN(Model.Model):
     def __init__(self) -> None:
         self.__name = 'default_KNN'
         self.__model = KNeighborsRegressor()

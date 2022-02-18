@@ -2,7 +2,7 @@ from modelling.models import Model, register
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 @register
-class LDA(Model):
+class LDA(Model.Model):
     def __init__(self) -> None:
         self.__name = 'default_LDA'
         self.__model = LinearDiscriminantAnalysis()

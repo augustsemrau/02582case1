@@ -14,4 +14,4 @@ def create_model(model_name:str, model_type:str):
     model = model_register[model_type.lower().strip()]()
     model.set_name(model_name.strip())
     model.ask_for_params()
-    model.save()
+    return model.save()

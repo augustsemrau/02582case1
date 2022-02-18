@@ -12,10 +12,12 @@ From there it can be fetched and used in the select.py or predict.py scripts.
 def main():
 
     file_path = os.path.dirname(os.path.abspath(__file__))
-    available_models = list(os.walk(os.path.join(file_path, 'modelling', 'models')))[-1][-1]
-    available_models = ','.join([model[:-3] for model in available_models])
-    available_strategies = list(os.walk(os.path.join(file_path, 'modelling', 'strategies', 'assessment')))[-1][-1]
-    available_strategies = ','.join([strategy[:-3] for strategy in available_strategies])
+    available_models = [name[:-3] for name in os.listdir(os.path.join(file_path, 'modelling', 'models')) 
+                        if name[-3:].lower() == '.py' and name != '__init__.py' and name != 'Model.py']
+    available_models = ', '.join(available_models)
+    available_strategies = [name[:-3] for name in os.listdir(os.path.join(file_path, 'modelling', 'strategies', 'assessment'))
+                            if name[-3:].lower() == '.py' and name != '__init__.py']
+    available_strategies = ', '.join(available_strategies)
 
     desc = f'''This script can be called to create a model of the given model_type with the given model_name.
             The model will be trained on the given train_data using the given strategy.

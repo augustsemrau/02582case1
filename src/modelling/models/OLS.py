@@ -2,7 +2,7 @@ from modelling.models import register, Model
 from sklearn.linear_model import LinearRegression
 
 @register
-class OLS(Model):
+class OLS(Model.Model):
     def __init__(self) -> None:
         self.__name = 'default_OLS'
         self.__model = LinearRegression()
