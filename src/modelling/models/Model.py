@@ -2,6 +2,16 @@ import os
 import pickle as pkl
 
 class Model:
+    def __init__(self) -> None:
+        self.__features = None
+        self.__path = None
+        self.__scores = None
+
+    def set_features(self, features):
+        self.__features = features
+
+    def get_features(self):
+        return self.__features
 
     def get_name(self):
         return self.__name
@@ -21,6 +31,7 @@ class Model:
         with open(file_path, 'wb') as file:
             pkl.dump(self, file)
 
+        self.__path = file_path
         return file_path
 
     def ask_for_params(self):

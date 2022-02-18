@@ -31,17 +31,16 @@ def main():
                         help='Name of new model to create e.g. "my_model"')
     parser.add_argument('--model_type', '-mt', type=str, default=None, required=True,
                         help=f'Type of new model to create. Available types: {available_models}')
-    parser.add_argument('--strategy', '-s', type=str, default=None, required=True,
-                        help=f'''Type of assessment strategy to train and test the model.
-                                Available strategies: {available_strategies}''')
     parser.add_argument('--train_data', '-train', type=str, default=None, required=True,
                         help='Path to training data saved as a .csv"')
-    parser.add_argument('--test_data', '-test', type=str, default=None, required=True,
-                        help='Path to test data saved as a .csv"')
 
     args = parser.parse_args()
-    model_path = modelling.create_model(args.model_name, args.model_type)
-    modelling.assess_model(model_path, args.strategy)
+    print('Building model...')
+    model_path = modelling.create_model(args.model_name, args.model_type, args.train_data, response=8)
+
+    print(f'''Model saved to: {model_path} \n
+            Training data used: {args.train_data} \n
+            ''')
 
 
 
