@@ -36,7 +36,7 @@ def main():
 
     args = parser.parse_args()
     print('Building model...')
-    model_path = modelling.create_model(args.model_name, args.model_type, args.train_data, response=8)
+    model_path = modelling.create_model(args.model_name, args.model_type, args.train_data)
 
     print(f'''Model saved to: {model_path} \n
             Training data used: {args.train_data} \n
