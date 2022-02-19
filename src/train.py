@@ -42,6 +42,18 @@ def main():
             Training data used: {args.train_data} \n
             ''')
 
+    '''
+        Randomize data (permute)
+        Split data in 3 (train, validation, test)
+        Train model on range of tuning parameters using train data
+        Select best model based on validation data
+        Test model to estimate the error on test set
+        end
+        Calculate mean and std error over M test errors
+        Line Clemmensen (DTU) Model Selection DTU 02582, 2022 29 / 74
+
+    '''
+
 
 
 if __name__ == '__main__':
