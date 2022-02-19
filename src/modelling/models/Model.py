@@ -7,6 +7,12 @@ class Model:
         self.__path = None
         self.__scores = None
 
+    def set_path(self, path):
+        self.__path = path
+
+    def get_path(self):
+        return self.__path
+
     def set_features(self, features):
         self.__features = features
 
@@ -31,7 +37,7 @@ class Model:
         with open(file_path, 'wb') as file:
             pkl.dump(self, file)
 
-        self.__path = file_path
+        self.set_path(file_path)
         return file_path
 
     def ask_for_params(self):

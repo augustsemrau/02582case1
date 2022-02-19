@@ -1,6 +1,7 @@
 import os
 import argparse
 import modelling
+import preprocessing
 
 '''
 This script can be called to create a model of the given model_type with the given model_name.
@@ -33,12 +34,18 @@ def main():
                         help=f'Type of new model to create. Available types: {available_models}')
     parser.add_argument('--train_data', '-train', type=str, default=None, required=True,
                         help='Path to training data saved as a .csv"')
+    parser.add_argument('--seperator', '-sep', type=str, default=';', required=False,
+                        help='Seperator to use for reading train data .csv, default is semi-colon(;)')
+    parser.add_argument('--delimiter', '-del', type=str, default=',', required=False,
+                        help='Delimiter to use for reading decimals in train data .csv, default is comma(,)')
+    
 
     args = parser.parse_args()
     print('Building model...')
-    model_path = modelling.create_model(args.model_name, args.model_type, args.train_data)
+    train_data = preprocessing.read_data(args.train_data, args.seperator, args.delimiter)
+    model = modelling.create_model(args.model_name, args.model_type, train_data)
 
-    print(f'''Model saved to: {model_path} \n
+    print(f'''Model saved to: {model.get_path()} \n
             Training data used: {args.train_data} \n
             ''')
 

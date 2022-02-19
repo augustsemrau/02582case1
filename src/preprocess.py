@@ -29,7 +29,7 @@ def main():
     parser.add_argument('--seperator', '-sep', type=str, default=';', required=False,
                         help='Seperator to use for reading data if the format is .csv, default is semi-colon(;)')
     parser.add_argument('--delimiter', '-del', type=str, default=',', required=False,
-                        help='Delimiter to use for reading data if the format is .csv, default is comma(,)')
+                        help='Delimiter to use for reading decimals in data if the format is .csv, default is comma(,)')
     parser.add_argument('--strategy', '-s', type=str, default=None, required=True,
                         help=f'Strategy/logic to use for preprocessing. Available strategies: {available_strategies}')
     parser.add_argument('--response', '-r', type=str, default=None, required=True,
