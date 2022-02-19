@@ -1,0 +1,10 @@
+#!/Users/williammarstrand/privat/DTU/Kandidat/1. Semester/Computational Data Analysis/02582case1/rune/bin/python3.8
+# -*- coding: utf-8 -*-
+import re
+import sys
+
+from pygments.cmdline import main
+
+if __name__ == '__main__':
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+    sys.exit(main())
