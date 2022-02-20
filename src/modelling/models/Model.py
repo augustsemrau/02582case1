@@ -45,3 +45,11 @@ class Model:
         Method for overwriting in subclasses
         '''
         return
+
+    def hyper_fit(self, X, y):
+        '''
+        Method for fitting multiple versions of the model
+        based on different hyper parameters. Should be 
+        implemented for each sub class of the Model class.
+        '''
+        return

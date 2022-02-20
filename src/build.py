@@ -17,7 +17,7 @@ def main():
                         if name[-3:].lower() == '.py' and name != '__init__.py' and name != 'Model.py']
     available_models = ', '.join(available_models)
     available_strategies = [name[:-3] for name in os.listdir(os.path.join(file_path, 'modelling', 'strategies'))
-                            if name[-3:].lower() == '.py' and name != '__init__.py']
+                            if name[-3:].lower() == '.py' and name != '__init__.py' and name != 'Strategy.py']
     available_strategies = ', '.join(available_strategies)
 
     desc = f'''This script can be called to create a model of the given model_type with the given model_name.
@@ -49,23 +49,13 @@ def main():
     model = modelling.create_model(args.model_name, args.model_type)
     strategy = modelling.create_strategy(args.strategy)
     best_model = strategy.assess(model, data)
+    strategy.save_assessment_summary()
 
 
     print(f'''Model saved to: {best_model.get_path()} \n
             Model performance summary saved to: {best_model.get_summary_path()} \n
             Data used: {args.data} \n
             ''')
-
-    '''
-        for 1:M
-        Randomize data (permute)
-        Split data in 3 (train, validation, test)
-        Train model on range of tuning parameters using train data
-        Select best model based on validation data
-        Test model to estimate the error on test set
-        end
-        Calculate mean and std error over M test errors
-    '''
 
 
 
