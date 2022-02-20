@@ -2,8 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
-/data
-
+**/data
+**/model_store
+**/predictions
+**/summaries
 
 # C extensions
 *.so
