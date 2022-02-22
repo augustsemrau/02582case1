@@ -1,14 +1,24 @@
 import os
+import copy
 import pickle as pkl
+from sklearn.model_selection import ParameterGrid
 
 class Model:
-    def __init__(self) -> None:
-        self.__features = None
+    def __init__(self, name, model, hyper_param_grid) -> None:
+        self.__name = name
+        self.__model = model
+        self.__hyper_param_grid = hyper_param_grid
         self.__path = None
-        self.__scores = None
+        self.__features = None
 
-    def set_path(self, path):
-        self.__path = path
+    def get_model(self):
+        return self.__model
+
+    def set_model(self, model):
+        self.__model = model
+
+    def get_hyper_params(self):
+        return self.__hyper_param_grid
 
     def get_path(self):
         return self.__path
@@ -18,6 +28,9 @@ class Model:
 
     def get_features(self):
         return self.__features
+
+    def get_params(self):
+        return self.__model.get_params()
 
     def get_name(self):
         return self.__name
@@ -37,7 +50,7 @@ class Model:
         with open(file_path, 'wb') as file:
             pkl.dump(self, file)
 
-        self.set_path(file_path)
+        self.__path = file_path
         return file_path
 
     def ask_for_params(self):
@@ -52,4 +65,13 @@ class Model:
         based on different hyper parameters. Should be 
         implemented for each sub class of the Model class.
         '''
-        return
+        models = []
+
+        hyper_param_combs = list(ParameterGrid(self.__hyper_param_grid))
+        for param_comb in hyper_param_combs:
+            fitted_model = self.__model.set_params(**param_comb).fit(X, y)
+            hyper_model = copy.deepcopy(self)
+            hyper_model.set_model(fitted_model)
+            models.append(hyper_model)
+
+        return models
