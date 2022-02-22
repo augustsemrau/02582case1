@@ -47,13 +47,15 @@ def main():
     print('Building model...')
     data = preprocessing.read_data(args.data, args.seperator, args.delimiter)
     model = modelling.create_model(args.model_name, args.model_type)
+    print('Assessing model and finding best version...')
     strategy = modelling.create_strategy(args.strategy)
     best_model = strategy.assess(model, data)
-    strategy.save_assessment_summary()
+    best_model.save()
+    strategy.save_assessment_summary(best_model)
 
 
     print(f'''Model saved to: {best_model.get_path()} \n
-            Model performance summary saved to: {best_model.get_summary_path()} \n
+            Model performance summary saved to: {strategy.get_summary_path()} \n
             Data used: {args.data} \n
             ''')
 
