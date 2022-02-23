@@ -5,7 +5,7 @@ __pycache__/
 **/data
 **/model_store
 **/predictions
-**/summaries
+**/assessment_summaries
 
 # C extensions
 *.so
