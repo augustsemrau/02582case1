@@ -17,8 +17,11 @@ def read_data(data_path:str, sep:str, delimiter:str):
         data = pd.read_csv(data_path, sep=sep, decimal=delimiter)
     elif data_path[-5:] == '.xlsx':
         data = pd.read_excel(data_path, decimal=delimiter)
+    elif data_path[-4:] == '.xls':
+        data = pd.read_excel(data_path, decimal=delimiter)
     else:
         raise Exception(f'Invalid data format for file {data_path}')
 
     data.columns = [c.strip().lower() for c in data.columns]
+
     return data
