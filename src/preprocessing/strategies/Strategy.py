@@ -1,3 +1,4 @@
+from operator import index
 import os
 from pandas import DataFrame
 
@@ -15,11 +16,13 @@ class Strategy:
     def _split_date_cols(self, data):
         date_cols = data.select_dtypes(include=['datetime64']).columns
         for col in date_cols:
-            data[f'{col} minute'] =  data[col].dt.minute
-            data[f'{col} hour'] =  data[col].dt.hour
-            data[f'{col} day'] =  data[col].dt.day
-            data[f'{col} month'] =  data[col].dt.month
-            data[f'{col} year'] =  data[col].dt.year
+            data[f'{col} minute'] =  data[col].dt.minute.astype(object)
+            data[f'{col} hour'] =  data[col].dt.hour.astype(object)
+            data[f'{col} day'] =  data[col].dt.day.astype(object)
+            data[f'{col} week number'] = (data[col].dt.isocalendar().week % 52).astype(object)
+            data[f'{col} week day'] = (data[col].dt.dayofweek + 1).astype(object)
+            data[f'{col} month'] =  data[col].dt.month.astype(object)
+            data[f'{col} year'] =  data[col].dt.year.astype(object)
 
         data = data.drop(date_cols, axis=1)
         return data
@@ -35,7 +38,7 @@ class Strategy:
         '''
         :param response:    The response/target variable of the strategy
         '''
-        self.__response = response
+        self.__response = response.lower()
 
     def get_response(self):
         '''
@@ -44,7 +47,7 @@ class Strategy:
 
         return self.__response
 
-    def save_data(self, data:DataFrame, org_filename:str, strategy:str, sep:str, delimiter:str):
+    def save_data(self, data:DataFrame, strategy:str):
         file_dir = os.path.dirname(os.path.abspath(__file__))
         data_folder = os.path.join(file_dir, '..', '..', 'data', 'preprocessed')
 
@@ -52,7 +55,7 @@ class Strategy:
             os.makedirs(data_folder)
 
         file_path = os.path.join(data_folder, f'{strategy}.csv')
-        data.to_csv(file_path, sep=sep, decimal=delimiter)
+        data.to_csv(file_path, sep=',', decimal='.', index=False)
 
         return file_path
 

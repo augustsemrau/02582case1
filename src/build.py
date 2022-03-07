@@ -34,10 +34,10 @@ def main():
                         help=f'Type of new model to create. Available types: {available_models}')
     parser.add_argument('--data', '-d', type=str, default=None, required=True,
                         help='Path to data saved as a .csv"')
-    parser.add_argument('--seperator', '-sep', type=str, default=';', required=False,
-                        help='Seperator to use for reading train data .csv, default is semi-colon(;)')
-    parser.add_argument('--delimiter', '-del', type=str, default=',', required=False,
-                        help='Delimiter to use for reading decimals in train data .csv, default is comma(,)')
+    parser.add_argument('--seperator', '-sep', type=str, default=',', required=False,
+                        help='Seperator to use for reading train data .csv, default is comma(,)')
+    parser.add_argument('--delimiter', '-del', type=str, default='.', required=False,
+                        help='Delimiter to use for reading decimals in train data .csv, default is dot(.)')
     parser.add_argument('--strategy', '-s', type=str, default=None, required=True,
                         help=f'''Strategy/logic to use for training and assessing model. 
                                 Available strategies: {available_strategies}''')
