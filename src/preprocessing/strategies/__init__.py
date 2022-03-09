@@ -5,3 +5,4 @@ def register(cls):
     return cls
 
 from preprocessing.strategies.Preprocess1 import Preprocess1
+from preprocessing.strategies.Preprocess2 import Preprocess2

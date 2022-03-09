@@ -20,7 +20,7 @@ class Strategy:
             data[f'{col} hour'] =  data[col].dt.hour.astype(object)
             data[f'{col} day'] =  data[col].dt.day.astype(object)
             data[f'{col} week number'] = (data[col].dt.isocalendar().week % 52).astype(object)
-            data[f'{col} week day'] = (data[col].dt.dayofweek + 1).astype(object)
+            data[f'{col} week day'] = (data[col].dt.dayofweek).astype(object)
             data[f'{col} month'] =  data[col].dt.month.astype(object)
             data[f'{col} year'] =  data[col].dt.year.astype(object)
 
