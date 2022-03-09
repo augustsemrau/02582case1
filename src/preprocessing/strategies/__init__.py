@@ -6,3 +6,4 @@ def register(cls):
 
 from preprocessing.strategies.Preprocess1 import Preprocess1
 from preprocessing.strategies.Preprocess2 import Preprocess2
+from preprocessing.strategies.WeeklyDepartureDerivatives import WeeklyDepartureDerivatives
