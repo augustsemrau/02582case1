@@ -40,8 +40,7 @@ def main():
     strategy = preprocessing.create_strategy(args.strategy, args.response)
     data = preprocessing.read_data(args.data, args.seperator, args.delimiter)
     preprocessed_data = strategy.process(data)
-    preprocessed_data_path = strategy.save_data(preprocessed_data, args.data, 
-                                args.strategy, args.seperator, args.delimiter)
+    preprocessed_data_path = strategy.save_data(preprocessed_data, args.strategy)
 
     print(f'''Data loaded from: {args.data} \n
             Preprocessed using strategy: {args.strategy} \n

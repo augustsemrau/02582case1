@@ -1,3 +1,0 @@
-'''
-Positive Predictive Value
-'''

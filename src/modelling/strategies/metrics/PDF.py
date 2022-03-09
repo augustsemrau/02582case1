@@ -1,3 +1,0 @@
-'''
-False Discovery Rate
-'''
