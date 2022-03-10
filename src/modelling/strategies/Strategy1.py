@@ -6,14 +6,9 @@ from sklearn.preprocessing import StandardScaler
 from modelling.strategies import register, Strategy
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
-from sklearn.feature_selection import VarianceThreshold, SelectFdr
 
 @register
 class Strategy1(Strategy.Strategy):
-    def __init__(self) -> None:
-        super().__init__()
-        self.FEATURE_SELECTION_VARIANCE_THRESHOLD = 0.005
-        self.FEATURE_SELECTION_BH_ALPHA = 0.00005
 
     def assess(self, model:Model.Model, data:pd.DataFrame):
         '''
@@ -28,17 +23,6 @@ class Strategy1(Strategy.Strategy):
         :returns:       The best found version of the model and its mean 
         '''
         model.set_features(data.columns.values)
-
-        # Feature selection
-        selector = VarianceThreshold(self.FEATURE_SELECTION_VARIANCE_THRESHOLD)
-        y = data.iloc()[:,-1]
-        X = selector.fit_transform(data.iloc()[:,:-1])
-
-        selector = SelectFdr(alpha=self.FEATURE_SELECTION_BH_ALPHA)
-        X = selector.fit_transform(X, y)
-
-        data = pd.DataFrame(np.column_stack((X,y)), 
-                            columns=np.append(selector.get_feature_names_out(), data.columns[-1]))
 
         M = 30
         test_errors = []
