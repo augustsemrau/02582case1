@@ -1,0 +1,26 @@
+{
+    "os": "Linux-5.4.0-104-generic-x86_64-with-glibc2.29",
+    "python": "3.8.10",
+    "heartbeatAt": "2022-03-16T10:37:00.598034",
+    "startedAt": "2022-03-16T10:36:53.643239",
+    "docker": null,
+    "gpu": "NVIDIA GeForce GTX 1650",
+    "gpu_count": 1,
+    "cpu_count": 12,
+    "cuda": null,
+    "args": [
+        "-f",
+        "/home/augustsemrau/.local/share/jupyter/runtime/kernel-a00a155c-e0ad-4c49-80a9-b7033288615b.json"
+    ],
+    "state": "running",
+    "program": "<python with no main file>",
+    "git": {
+        "remote": "https://github.com/augustsemrau/02582case1.git",
+        "commit": "9f348d756d02158b949855507b4e05b449f10176"
+    },
+    "email": "augu0093@gmail.com",
+    "root": "/home/augustsemrau/drive/M1semester/02582_ComputationalDataAnalysis/02582case1",
+    "host": "augustsemrau-XPS-15-7590",
+    "username": "augustsemrau",
+    "executable": "/usr/bin/python3"
+}
